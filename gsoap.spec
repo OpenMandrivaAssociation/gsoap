@@ -1,5 +1,5 @@
 %define ver 2.7
-%define subver 9d
+%define subver 9e
 %define release  %mkrel 1
 
 Name: gsoap
