@@ -1,5 +1,5 @@
 %define ver 2.7
-%define subver 9f
+%define subver 9h
 %define release  %mkrel 1
 
 Name: gsoap
@@ -9,7 +9,6 @@ Summary: Development tookit for SOAP/XML Web services in C/C++
 Group: Development/Other
 License: gSOAP Public License
 Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.gz
-Patch0: stdsoap2.cpp.patch
 URL: http://www.cs.fsu.edu/~engelen/soap.html\
 BuildRequires: automake
 BuildRequires: bison
@@ -24,11 +23,6 @@ binding to ease the development of SOAP/XML Web services in C and C/C++.
 %prep
 rm -rf %{buildroot}
 %setup -q -n %{name}-%{ver}
-{
-cd soapcpp2
-%patch0 -p0 -b .const_uchar_star_star
-cd ..
-}
 
 %build
 %configure
