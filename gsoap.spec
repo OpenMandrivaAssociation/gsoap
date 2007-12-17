@@ -14,7 +14,6 @@ BuildRequires: automake
 BuildRequires: bison
 BuildRequires: libstdc++-devel
 BuildRequires: flex
-BuildRoot: %{_tmppath}/%{name}-%{version}
 
 %description
 The gSOAP Web services development toolkit offers an XML to C/C++ language
