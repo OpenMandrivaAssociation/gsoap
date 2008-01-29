@@ -1,5 +1,5 @@
 %define ver 2.7
-%define subver 9l
+%define subver 10
 %define release  %mkrel 1
 
 Name: gsoap
@@ -8,11 +8,11 @@ Release: %release
 Summary: Development tookit for SOAP/XML Web services in C/C++
 Group: Development/Other
 License: gSOAP Public License
-Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.gz
+Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.bz2
 URL: http://www.cs.fsu.edu/~engelen/soap.html\
 BuildRequires: automake
 BuildRequires: bison
-BuildRequires: libstdc++-devel
+BuildRequires: libstdc++-devel openssl-devel zlib-devel
 BuildRequires: flex
 BuildRoot: %{_tmppath}/%{name}-%{version}
 
@@ -32,14 +32,14 @@ make
 rm -rf %{buildroot}
 %makeinstall
 mkdir -p %buildroot/%_includedir/import
-cp -R soapcpp2/import %buildroot/%_includedir
+cp -R %name/import %buildroot/%_includedir
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(644,root,root,755)
-%doc soapcpp2/uddi2/uddi2-typemap.dat soapcpp2/WS/WS-typemap.dat soapcpp2/typemap.dat soapcpp2/stdsoap2.cpp soapcpp2/stdsoap2.c soapcpp2/NOTES.txt soapcpp2/README.txt soapcpp2/*.html soapcpp2/gpl.txt soapcpp2/license.pdf soapcpp2/doc/*
+%doc %name/uddi2/uddi2-typemap.dat %name/WS %name/stdsoap2.cpp %name/stdsoap2.c LICENSE.txt NOTES.txt README.txt *.html gpl.txt license.pdf %name/doc
 %defattr(-,root,root)
 %{_bindir}/soapcpp2
 %{_bindir}/wsdl2h
