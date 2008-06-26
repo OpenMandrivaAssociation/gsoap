@@ -26,25 +26,32 @@ rm -rf %{buildroot}
 
 %build
 %configure
-make
+make SOAPCPP2_IMPORTPATH="-DSOAPCPP2_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/import\"\\\"" WSDL2H_IMPORTPATH="-DWSDL2H_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/WS\"\\\""
 
 %install
 rm -rf %{buildroot}
+
+mkdir -p %buildroot/%_datadir/%name
+cp -R %name/import %buildroot/%_datadir/%name
+cp -R %name/WS %buildroot/%_datadir/%name
+cp -R %name/uddi2 %buildroot/%_datadir/%name
+cp %name/stdsoap2.cpp %buildroot/%_datadir/%name
+cp %name/stdsoap2.c %buildroot/%_datadir/%name
 %makeinstall
-mkdir -p %buildroot/%_includedir/import
-cp -R %name/import %buildroot/%_includedir
+
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(644,root,root,755)
-%doc %name/uddi2/uddi2-typemap.dat %name/WS %name/stdsoap2.cpp %name/stdsoap2.c LICENSE.txt NOTES.txt README.txt *.html gpl.txt license.pdf %name/doc
+%doc LICENSE.txt NOTES.txt README.txt *.html gpl.txt license.pdf %name/doc
 %defattr(-,root,root)
 %{_bindir}/soapcpp2
 %{_bindir}/wsdl2h
 %{_includedir}/stdsoap2.h
-%{_includedir}/import/*
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/*
 %{_libdir}/libgsoap++.a
 %{_libdir}/libgsoap.a
 %{_libdir}/libgsoapck++.a
