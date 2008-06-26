@@ -1,6 +1,6 @@
 %define ver 2.7
 %define subver 10
-%define release  %mkrel 2
+%define release  %mkrel 3
 
 Name: gsoap
 Version: %{ver}.%{subver}
@@ -9,7 +9,7 @@ Summary: Development tookit for SOAP/XML Web services in C/C++
 Group: Development/Other
 License: gSOAP Public License
 Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.bz2
-URL: http://www.cs.fsu.edu/~engelen/soap.html\
+URL: http://www.cs.fsu.edu/~engelen/soap.html
 BuildRequires: automake
 BuildRequires: bison
 BuildRequires: libstdc++-devel openssl-devel zlib-devel
