@@ -1,6 +1,6 @@
 %define ver 2.7
-%define subver 10
-%define release  %mkrel 3
+%define subver 11
+%define release  %mkrel 1
 
 Name: gsoap
 Version: %{ver}.%{subver}
