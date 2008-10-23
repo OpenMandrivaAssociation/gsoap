@@ -1,6 +1,6 @@
 %define ver 2.7
 %define subver 11
-%define release  %mkrel 2
+%define release  %mkrel 3
 
 Name: gsoap
 Version: %{ver}.%{subver}
@@ -9,6 +9,7 @@ Summary: Development tookit for SOAP/XML Web services in C/C++
 Group: Development/Other
 License: gSOAP Public License
 Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.bz2
+Patch0: Makefile.am.patch
 URL: http://www.cs.fsu.edu/~engelen/soap.html
 BuildRequires: automake
 BuildRequires: bison
@@ -23,8 +24,16 @@ binding to ease the development of SOAP/XML Web services in C and C/C++.
 %prep
 rm -rf %{buildroot}
 %setup -q -n %{name}-%{ver}
+{
+cd gsoap
+%patch0 -p0 -b .fPIC
+cd -
+}
 
 %build
+aclocal
+automake --add-missing
+autoreconf
 %configure
 make SOAPCPP2_IMPORTPATH="-DSOAPCPP2_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/import\"\\\"" WSDL2H_IMPORTPATH="-DWSDL2H_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/WS\"\\\""
 
