@@ -1,6 +1,6 @@
 %define ver 2.7
-%define subver 11
-%define release  %mkrel 3
+%define subver 12
+%define release  %mkrel 1
 
 Name: gsoap
 Version: %{ver}.%{subver}
@@ -54,7 +54,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE.txt NOTES.txt README.txt *.html gpl.txt license.pdf %name/doc
+%doc LICENSE.txt NOTES.txt README.txt *.html license.pdf %name/doc
 %defattr(-,root,root)
 %{_bindir}/soapcpp2
 %{_bindir}/wsdl2h
