@@ -10,6 +10,7 @@ Group: Development/Other
 License: gSOAP Public License
 Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.bz2
 Patch0: Makefile.am.patch
+Patch1: gsoap-2.7-stringliteral.patch
 URL: http://www.cs.fsu.edu/~engelen/soap.html
 BuildRequires: automake
 BuildRequires: bison
@@ -29,6 +30,7 @@ cd gsoap
 %patch0 -p0 -b .fPIC
 cd -
 }
+%patch1 -p1 -b .stringliteral
 
 %build
 aclocal
