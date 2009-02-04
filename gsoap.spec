@@ -1,6 +1,6 @@
 %define ver 2.7
 %define subver 12
-%define release  %mkrel 1
+%define release  %mkrel 2
 
 Name: gsoap
 Version: %{ver}.%{subver}
@@ -22,6 +22,16 @@ BuildRoot: %{_tmppath}/%{name}-%{version}
 The gSOAP Web services development toolkit offers an XML to C/C++ language
 binding to ease the development of SOAP/XML Web services in C and C/C++.
 
+%package	source
+Summary:	Source files of %{name}
+Group:		Development/C
+
+%description	source
+The gSOAP Web services development toolkit offers an XML to C/C++ language
+binding to ease the development of SOAP/XML Web services in C and C/C++.
+
+This package contains the source code.
+
 %prep
 rm -rf %{buildroot}
 %setup -q -n %{name}-%{ver}
@@ -37,6 +47,12 @@ aclocal
 automake --add-missing
 autoreconf
 %configure
+
+# keep a copy of source code (used by some TPM tools for Intel Classmate)
+rm -rf %{name}-source
+cp -a . ../%{name}-source
+mv ../%{name}-source .
+
 make SOAPCPP2_IMPORTPATH="-DSOAPCPP2_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/import\"\\\"" WSDL2H_IMPORTPATH="-DWSDL2H_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/WS\"\\\""
 
 %install
@@ -49,7 +65,8 @@ cp -R %name/uddi2 %buildroot/%_datadir/%name
 cp %name/stdsoap2.cpp %buildroot/%_datadir/%name
 cp %name/stdsoap2.c %buildroot/%_datadir/%name
 %makeinstall
-
+install -d %{buildroot}%{_prefix}/src/
+cp -a %{name}-source %{buildroot}%{_prefix}/src/%{name}
 
 %clean
 rm -rf %{buildroot}
@@ -76,4 +93,5 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/gsoapck++.pc
 %{_libdir}/pkgconfig/gsoapck.pc
 
-
+%files source
+%{_prefix}/src/%{name}
