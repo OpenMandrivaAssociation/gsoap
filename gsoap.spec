@@ -1,6 +1,6 @@
 %define ver 2.7
-%define subver 15
-%define release  %mkrel 3
+%define subver 16
+%define release  %mkrel 1
 
 Name: gsoap
 Version: %{ver}.%{subver}
@@ -10,8 +10,7 @@ Group: Development/Other
 License: gSOAP Public License
 Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.bz2
 Patch0: Makefile.am.patch
-Patch1: gsoap-2.7-stringliteral.patch
-Patch2: gsoap-2.7.15-ssl.patch
+Patch1: gsoap-2.7.15-ssl.patch
 URL: http://www.cs.fsu.edu/~engelen/soap.html
 BuildRequires: automake
 BuildRequires: bison
@@ -41,8 +40,7 @@ cd gsoap
 %patch0 -p0 -b .fPIC
 cd -
 }
-%patch1 -p1 -b .stringliteral
-%patch2 -p1 -b .ssl
+%patch1 -p1 -b .ssl
 
 %build
 aclocal
