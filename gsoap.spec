@@ -1,5 +1,5 @@
 %define ver 2.7
-%define subver 16
+%define subver 17
 %define release  %mkrel 1
 
 Name: gsoap
@@ -10,7 +10,7 @@ Group: Development/Other
 License: gSOAP Public License
 Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.bz2
 Patch0: Makefile.am.patch
-Patch1: gsoap-2.7.15-ssl.patch
+Patch1: gsoap-2.7.17-ssl.patch
 URL: http://www.cs.fsu.edu/~engelen/soap.html
 BuildRequires: automake
 BuildRequires: bison
