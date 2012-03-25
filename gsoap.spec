@@ -1,6 +1,6 @@
-%define ver 2.7
-%define subver 17
-%define release  %mkrel 2
+%define ver 2.8
+%define subver 8
+%define release  1
 
 Name: gsoap
 Version: %{ver}.%{subver}
@@ -8,7 +8,7 @@ Release: %release
 Summary: Development tookit for SOAP/XML Web services in C/C++
 Group: Development/Other
 License: gSOAP Public License
-Source: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.tar.bz2
+Source0: http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.zip
 Patch0: Makefile.am.patch
 Patch1: gsoap-2.7.17-ssl.patch
 URL: http://www.cs.fsu.edu/~engelen/soap.html
@@ -37,7 +37,7 @@ rm -rf %{buildroot}
 %setup -q -n %{name}-%{ver}
 {
 cd gsoap
-%patch0 -p0 -b .fPIC
+#%patch0 -p0 -b .fPIC
 cd -
 }
 %patch1 -p1 -b .ssl
