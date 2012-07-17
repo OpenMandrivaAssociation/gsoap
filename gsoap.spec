@@ -1,5 +1,5 @@
 %define ver 2.8
-%define subver 8
+%define subver 9
 %define release  1
 
 Name: gsoap
@@ -16,7 +16,6 @@ BuildRequires: automake
 BuildRequires: bison
 BuildRequires: libstdc++-devel openssl-devel zlib-devel
 BuildRequires: flex
-BuildRoot: %{_tmppath}/%{name}-%{version}
 
 %description
 The gSOAP Web services development toolkit offers an XML to C/C++ language
@@ -67,9 +66,6 @@ cp %name/stdsoap2.c %buildroot/%_datadir/%name
 %makeinstall
 install -d %{buildroot}%{_prefix}/src/
 cp -a %{name}-source %{buildroot}%{_prefix}/src/%{name}
-
-%clean
-rm -rf %{buildroot}
 
 %files
 %defattr(644,root,root,755)
