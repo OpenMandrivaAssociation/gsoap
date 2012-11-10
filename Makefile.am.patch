@@ -1,0 +1,26 @@
+--- Makefile.am	2009-09-08 01:06:50.000000000 +0200
++++ Makefile.am.fPIC	2009-09-09 10:44:29.000000000 +0200
+@@ -34,17 +34,17 @@ stdsoap2_ssl_cpp.cpp: stdsoap2.cpp
+ lib_LIBRARIES = libgsoap.a libgsoap++.a libgsoapck.a libgsoapck++.a libgsoapssl.a libgsoapssl++.a
+ 
+ libgsoap_a_SOURCES = stdsoap2.c
+-libgsoap_a_CFLAGS = $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform)
++libgsoap_a_CFLAGS = -fPIC $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform)
+ libgsoap___a_SOURCES = stdsoap2_cpp.cpp
+-libgsoap___a_CXXFLAGS = $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform)
++libgsoap___a_CXXFLAGS = -fPIC $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform)
+ libgsoapck_a_SOURCES = stdsoap2_ck.c
+-libgsoapck_a_CFLAGS = $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_COOKIES
++libgsoapck_a_CFLAGS = -fPIC $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_COOKIES
+ libgsoapck___a_SOURCES = stdsoap2_ck_cpp.cpp
+-libgsoapck___a_CXXFLAGS = $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_COOKIES
++libgsoapck___a_CXXFLAGS = -fPIC $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_COOKIES
+ libgsoapssl_a_SOURCES = stdsoap2_ssl.c
+-libgsoapssl_a_CFLAGS = $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_OPENSSL -DWITH_DOM -DWITH_GZIP
++libgsoapssl_a_CFLAGS = -fPIC $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_OPENSSL -DWITH_DOM -DWITH_GZIP
+ libgsoapssl___a_SOURCES = stdsoap2_ssl_cpp.cpp
+-libgsoapssl___a_CXXFLAGS = $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_OPENSSL -DWITH_DOM -DWITH_GZIP
++libgsoapssl___a_CXXFLAGS = -fPIC $(SOAPCPP2_DEBUG) $(SOAPCPP2_NONAMESPACES) -D$(platform) -DWITH_OPENSSL -DWITH_DOM -DWITH_GZIP
+ 
+ BUILT_SOURCES = stdsoap2_cpp.cpp $(lib_LIBRARIES)
+ 
