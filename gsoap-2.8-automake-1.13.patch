@@ -1,0 +1,16 @@
+--- gsoap-2.8/configure.in.bero	2013-01-15 22:30:42.625244262 +0100
++++ gsoap-2.8/configure.in	2013-01-15 22:30:51.309139761 +0100
+@@ -1,11 +1,10 @@
+ # Process this file with autoconf to produce a configure script.
+ AC_INIT(gsoap, 2.8)
+-AM_INIT_AUTOMAKE(gsoap, 2.8)
++AM_INIT_AUTOMAKE
+ AC_CONFIG_SRCDIR([gsoap/stdsoap2.cpp])
+ AC_CANONICAL_HOST
+ 
+-# AC_CONFIG_HEADERS([config.h])
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS([config.h])
+ 
+ # we use subdirs.
+ AC_PROG_MAKE_SET 
