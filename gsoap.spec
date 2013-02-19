@@ -1,3 +1,6 @@
+%define _enable_debug_packages %{nil}
+%define debug_package          %{nil}
+
 %define ver 2.8
 %define subver 14
 
