@@ -9,7 +9,6 @@ Group:		Development/Other
 License:	gSOAP Public License
 Source0:	http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.zip
 Patch0:		Makefile.am.patch
-Patch1:		gsoap-2.7.17-ssl.patch
 Patch2:		gsoap-2.8-automake-1.13.patch
 URL:		http://www.cs.fsu.edu/~engelen/soap.html
 BuildRequires:	automake
@@ -40,7 +39,6 @@ cd gsoap
 #%patch0 -p0 -b .fPIC
 cd -
 }
-%patch1 -p1 -b .ssl
 %patch2 -p1 -b .automake13~
 
 %build
