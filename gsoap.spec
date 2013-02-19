@@ -1,7 +1,5 @@
 %define ver 2.8
 %define subver 14
-%define debug_package %{nil}
-%define _enable_debug_packages %{nil}
 
 Name:		gsoap
 Version:	%{ver}.%{subver}
@@ -42,13 +40,9 @@ cd gsoap
 cd -
 }
 %patch2 -p1 -b .automake13~
-
-%build
 aclocal
 automake --add-missing
 autoreconf
-%configure --enable-debug
-
 # remove the binaries
 rm -rf gsoap/bin
 find . -name "*.o" -exec rm {} \;
@@ -56,6 +50,9 @@ rm -rf gsoap/ios_plugin/examples/GeoIPService/build
 rm -rf gsoap/ios_plugin/examples/Calc/build
 rm -rf gsoap/samples/wcf/WS/DualHttp/calculator
 rm -rf gsoap/samples/link++/xmas
+
+%build
+%configure --enable-debug
 
 # keep a copy of source code (used by some TPM tools for Intel Classmate)
 rm -rf %{name}-source
