@@ -43,11 +43,11 @@ cd gsoap
 cd -
 }
 %patch2 -p1 -b .automake13~
-
-%build
 aclocal
 automake --add-missing
 autoreconf
+
+%build
 %configure
 
 # keep a copy of source code (used by some TPM tools for Intel Classmate)
