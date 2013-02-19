@@ -1,8 +1,7 @@
-%define _enable_debug_packages %{nil}
-%define debug_package          %{nil}
-
 %define ver 2.8
 %define subver 14
+%define debug_package %{nil}
+%define _enable_debug_packages %{nil}
 
 Name:		gsoap
 Version:	%{ver}.%{subver}
@@ -48,7 +47,15 @@ cd -
 aclocal
 automake --add-missing
 autoreconf
-%configure
+%configure --enable-debug
+
+# remove the binaries
+rm -rf gsoap/bin
+find . -name "*.o" -exec rm {} \;
+rm -rf gsoap/ios_plugin/examples/GeoIPService/build
+rm -rf gsoap/ios_plugin/examples/Calc/build
+rm -rf gsoap/samples/wcf/WS/DualHttp/calculator
+rm -rf gsoap/samples/link++/xmas
 
 # keep a copy of source code (used by some TPM tools for Intel Classmate)
 rm -rf %{name}-source
@@ -66,13 +73,15 @@ cp -R %name/WS %buildroot/%_datadir/%name
 cp -R %name/uddi2 %buildroot/%_datadir/%name
 cp %name/stdsoap2.cpp %buildroot/%_datadir/%name
 cp %name/stdsoap2.c %buildroot/%_datadir/%name
-%makeinstall
+%makeinstall STRIP=/bin/true
+
 install -d %{buildroot}%{_prefix}/src/
 cp -a %{name}-source %{buildroot}%{_prefix}/src/%{name}
 
 find %{buildroot} -type d -perm 0744 -exec chmod 0755 '{}' \;
 find %{buildroot} -type f -perm 0744 -exec chmod 0644 '{}' \;
-
+find %{buildroot}%{_prefix}/src -name "*.xml" -exec chmod 0644 '{}' \;
+ 
 %files
 %defattr(644,root,root,755)
 %doc LICENSE.txt NOTES.txt README.txt *.html license.pdf %name/doc
