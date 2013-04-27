@@ -3,7 +3,7 @@
 
 Name:		gsoap
 Version:	%{ver}.%{subver}
-Release:	1
+Release:	2
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Group:		Development/Other
 License:	gSOAP Public License
