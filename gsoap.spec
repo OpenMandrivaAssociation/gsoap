@@ -52,7 +52,7 @@ rm -rf gsoap/samples/wcf/WS/DualHttp/calculator
 rm -rf gsoap/samples/link++/xmas
 
 %build
-%configure --enable-debug
+%configure
 
 # keep a copy of source code (used by some TPM tools for Intel Classmate)
 rm -rf %{name}-source
