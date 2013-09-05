@@ -1,10 +1,10 @@
 %define ver 2.8
-%define subver 14
+%define subver 16
 
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Name:		gsoap
 Version:	%{ver}.%{subver}
-Release:	2
+Release:	1
 Group:		Development/Other
 License:	gSOAP Public License
 Url:		http://www.cs.fsu.edu/~engelen/soap.html
