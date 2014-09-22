@@ -1,16 +1,15 @@
 %define ver 2.8
-%define subver 16
+%define subver 18
 
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Name:		gsoap
 Version:	%{ver}.%{subver}
-Release:	7
+Release:	1
 Group:		Development/Other
 License:	gSOAP Public License
 Url:		http://www.cs.fsu.edu/~engelen/soap.html
 Source0:	http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.zip
-Patch0:		Makefile.am.patch
-Patch2:		gsoap-2.8-automake-1.13.patch
+Source100:	%{name}.rpmlintrc
 
 BuildRequires:	bison
 BuildRequires:	flex
@@ -34,12 +33,6 @@ This package contains the source code.
 
 %prep
 %setup -qn %{name}-%{ver}
-{
-cd gsoap
-#%patch0 -p0 -b .fPIC
-cd -
-}
-%patch2 -p1 -b .automake13~
 aclocal
 automake --add-missing
 autoreconf
