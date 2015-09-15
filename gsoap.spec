@@ -1,10 +1,10 @@
 %define ver 2.8
-%define subver 18
+%define subver 23
 
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Name:		gsoap
 Version:	%{ver}.%{subver}
-Release:	3
+Release:	1
 Group:		Development/Other
 License:	gSOAP Public License
 Url:		http://www.cs.fsu.edu/~engelen/soap.html
@@ -71,7 +71,7 @@ find %{buildroot} -type f -perm 0744 -exec chmod 0644 '{}' \;
 find %{buildroot}%{_prefix}/src -name "*.xml" -exec chmod 0644 '{}' \;
  
 %files
-%doc LICENSE.txt NOTES.txt README.txt *.html license.pdf %{name}/doc
+%doc LICENSE.txt NOTES.txt README.txt license.pdf %{name}/doc
 %{_bindir}/soapcpp2
 %{_bindir}/wsdl2h
 %{_includedir}/stdsoap2.h
