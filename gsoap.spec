@@ -10,6 +10,7 @@ License:	gSOAP Public License
 Url:		http://www.cs.fsu.edu/~engelen/soap.html
 Source0:	http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.zip
 Source100:	%{name}.rpmlintrc
+Patch1:		gsoap-openssl110.patch
 
 BuildRequires:	bison
 BuildRequires:	flex
@@ -33,6 +34,7 @@ This package contains the source code.
 
 %prep
 %setup -qn %{name}-%{ver}
+%apply_patches
 aclocal
 automake --add-missing
 autoreconf
