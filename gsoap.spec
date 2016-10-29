@@ -1,5 +1,5 @@
 %define ver 2.8
-%define subver 23
+%define subver 37
 
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Name:		gsoap
