@@ -1,16 +1,15 @@
-%define ver 2.8
-%define subver 37
+%define ver %(echo %{version} |cut -d. -f1-2)
 
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Name:		gsoap
-Version:	%{ver}.%{subver}
+Version:	2.8.55
 Release:	1
 Group:		Development/Other
 License:	gSOAP Public License
 Url:		http://www.cs.fsu.edu/~engelen/soap.html
-Source0:	http://prdownloads.sourceforge.net/gsoap2/%{name}_%{version}.zip
+Source0:	https://downloads.sourceforge.net/project/gsoap2/gsoap-2.8/gsoap_%{version}.zip
 Source100:	%{name}.rpmlintrc
-Patch1:		gsoap-openssl110.patch
+#Patch1:		gsoap-openssl110.patch
 
 BuildRequires:	bison
 BuildRequires:	flex
