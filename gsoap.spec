@@ -9,8 +9,10 @@ License:	gSOAP Public License
 Url:		http://www.cs.fsu.edu/~engelen/soap.html
 Source0:	https://downloads.sourceforge.net/project/gsoap2/gsoap-2.8/gsoap_%{version}.zip
 Source100:	%{name}.rpmlintrc
-#Patch1:		gsoap-openssl110.patch
 
+Patch0:	Makefile.am.patch
+Patch1:	gsoap-2.8.66-ssl.patch
+Patch2:	gsoap-2.8-automake.patch
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	stdc++-devel
@@ -33,12 +35,20 @@ This package contains the source code.
 
 %prep
 %setup -qn %{name}-%{ver}
-%apply_patches
-aclocal
-automake --add-missing
-autoreconf
+
+%patch0 -p0 -b .fPIC
+%patch1 -p0 -b .ssl
+%patch2 -p0 -b .automake
+
+# make automake more happy
+sed -i -e 's,\(^AM_INIT_AUTOMAKE(\[\),\1subdir-objects ,' configure.ac
+
+# fix build with glibc >= 2.27
+sed -i -e 's,xlocale.h,locale.h,g' ./gsoap/stdsoap2.h
+
 # remove the binaries
 rm -rf gsoap/bin
+
 find . -name "*.o" -exec rm {} \;
 rm -rf gsoap/ios_plugin/examples/GeoIPService/build
 rm -rf gsoap/ios_plugin/examples/Calc/build
@@ -46,12 +56,29 @@ rm -rf gsoap/samples/wcf/WS/DualHttp/calculator
 rm -rf gsoap/samples/link++/xmas
 
 %build
+autoreconf -vfi
 %configure
 
 # keep a copy of source code (used by some TPM tools for Intel Classmate)
 rm -rf %{name}-source
 cp -a . ../%{name}-source
 mv ../%{name}-source .
+
+# remove pre-built binaries and libraries in source tree
+find %{name}-source -name "*.so" -exec rm {} \;
+find %{name}-source -name "*.o" -exec rm {} \;
+find %{name}-source -name "*.dll" -exec rm {} \;
+find %{name}-source -name "*.exe" -exec rm {} \;
+find %{name}-source -name "*.la" -exec rm {} \;
+find %{name}-source -name "*.a" -exec rm {} \;
+find %{name}-source -name "*.pdf" -exec rm {} \;
+find %{name}-source -name "*.doc" -exec rm {} \;
+
+# next files make debuginfo failing:
+rm -rf %{name}-source/%{name}/ios_plugin/examples/Calc/build/Debug-iphonesimulator/Calc.app/Calc
+rm -rf %{name}-source/%{name}/ios_plugin/examples/GeoIPService/build/Debug-iphonesimulator/GeoIPService.app/GeoIPService
+rm -rf %{name}-source/%{name}/samples/link++/xmas
+rm -rf %{name}-source/%{name}/samples/wcf/WS/DualHttp/calculator
 
 make SOAPCPP2_IMPORTPATH="-DSOAPCPP2_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/import\"\\\"" WSDL2H_IMPORTPATH="-DWSDL2H_IMPORT_PATH=\"\\\"%{_datadir}/%{name}/WS\"\\\""
 
@@ -93,4 +120,3 @@ find %{buildroot}%{_prefix}/src -name "*.xml" -exec chmod 0644 '{}' \;
 
 %files source
 %{_prefix}/src/%{name}
-
