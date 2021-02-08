@@ -2,7 +2,7 @@
 
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Name:		gsoap
-Version:	2.8.109
+Version:	2.8.111
 Release:	1
 Group:		Development/Other
 License:	gSOAP Public License
