@@ -3,7 +3,7 @@
 Summary:	Development tookit for SOAP/XML Web services in C/C++
 Name:		gsoap
 Version:	2.8.111
-Release:	1
+Release:	2
 Group:		Development/Other
 License:	gSOAP Public License
 Url:		http://www.cs.fsu.edu/~engelen/soap.html
@@ -34,11 +34,7 @@ binding to ease the development of SOAP/XML Web services in C and C/C++.
 This package contains the source code.
 
 %prep
-%setup -qn %{name}-%{ver}
-
-%patch0 -p0 -b .fPIC
-%patch1 -p0 -b .ssl
-%patch2 -p0 -b .automake
+%autosetup -p0 -n %{name}-%{ver}
 
 # make automake more happy
 sed -i -e 's,\(^AM_INIT_AUTOMAKE(\[\),\1subdir-objects ,' configure.ac
@@ -57,7 +53,7 @@ rm -rf gsoap/samples/link++/xmas
 
 %build
 autoreconf -vfi
-%configure
+%configure --enable-shared
 
 # keep a copy of source code (used by some TPM tools for Intel Classmate)
 rm -rf %{name}-source
