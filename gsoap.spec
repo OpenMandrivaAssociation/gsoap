@@ -12,7 +12,7 @@ Source100:	%{name}.rpmlintrc
 
 Patch0:	Makefile.am.patch
 Patch1:	gsoap-2.8.66-ssl.patch
-Patch2:	gsoap-2.8-automake.patch
+#Patch2:	gsoap-2.8-automake.patch
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	stdc++-devel
