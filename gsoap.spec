@@ -6,7 +6,7 @@ Version:	2.8.134
 Release:	1
 Group:		Development/Other
 License:	gSOAP Public License
-Url:		http://www.cs.fsu.edu/~engelen/soap.html
+Url:		https://www.cs.fsu.edu/~engelen/soap.html
 Source0:	https://downloads.sourceforge.net/project/gsoap2/gsoap_%{version}.zip
 Source100:	%{name}.rpmlintrc
 
